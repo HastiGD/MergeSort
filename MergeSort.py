@@ -12,7 +12,7 @@ def createList(n):
 
     return unsortedList
 
-def MergeSort(List, left, right, sortedList):
+def MergeSort(List):
 
     listLength = len(List)
 
@@ -27,8 +27,8 @@ def MergeSort(List, left, right, sortedList):
         print(left, right)
 
         # call MergeSort on each half
-        MergeSort(left, left, right, sortedList)
-        MergeSort(right , left, right, sortedList)
+        MergeSort(left)
+        MergeSort(right)
 
         # merge lists
 
@@ -38,11 +38,7 @@ def main():
     List = createList(10)
     print(List)
 
-    left = list()
-    right = list()
-    sortedList = list()
-
-    MergeSort(List, left, right, sortedList)
+    MergeSort(List)
 
 
 main()
