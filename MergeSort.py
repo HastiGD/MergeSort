@@ -18,27 +18,48 @@ def MergeSort(List):
 
     if listLength > 1:
         # find index of middle
-        middleIndex = (listLength//2)-1
-        middleRight = middleIndex+1
+        middleIndex = (listLength//2)
 
         # divide list into left and right
-        left = List[:middleRight]
-        right = List[middleRight:]
+        left = List[:middleIndex]
+        right = List[middleIndex:]
         print(left, right)
 
         # call MergeSort on each half
         MergeSort(left)
         MergeSort(right)
 
-        # merge lists
+        # merge the left and right sorted lists
+        i = 0
+        j = 0
+        k = 0
 
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                List[k] = left[i]
+                i = i + 1
+            else:
+                List[k] = right[j]
+                j = j + 1
+            k = k + 1
+
+        while i < len(left):
+            List[k] = left[i]
+            i = i + 1
+            k = k + 1
+
+        while j < len(right):
+            List[k] = right[j]
+            j = j + 1
+            k = k + 1
+
+        print(List)
 
 def main():
 
     List = createList(10)
     print(List)
-
     MergeSort(List)
-
+    print(List)
 
 main()
