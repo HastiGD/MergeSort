@@ -12,6 +12,8 @@ def createList(n):
 
     return unsortedList
 
+# MergeSort         uses the divide and conquer technique to sort an unsorted list of random integers
+# input: List       an unsorted list of random integers
 def MergeSort(List):
 
     listLength = len(List)
@@ -23,43 +25,51 @@ def MergeSort(List):
         # divide list into left and right
         left = List[:middleIndex]
         right = List[middleIndex:]
-        print(left, right)
 
         # call MergeSort on each half
         MergeSort(left)
         MergeSort(right)
 
-        # merge the left and right sorted lists
-        i = 0
-        j = 0
+        # index for iterating through left and right halves
+        i = j = 0
+
+        # index for iterating through List
         k = 0
 
+        # compare first element in the left list to the elements in the right list iteratively
+        # put smaller of two elements in List
+        # repeat until one of the lists is consumed
         while i < len(left) and j < len(right):
             if left[i] <= right[j]:
                 List[k] = left[i]
-                i = i + 1
+                i += 1
             else:
                 List[k] = right[j]
-                j = j + 1
-            k = k + 1
+                j += 1
+            k += 1
 
+        # add remaining elements from left list iteratively, if any exist
         while i < len(left):
             List[k] = left[i]
-            i = i + 1
-            k = k + 1
+            i += 1
+            k += 1
 
+        # add remaining elements from right list iteratively, if any exist
         while j < len(right):
             List[k] = right[j]
-            j = j + 1
-            k = k + 1
+            j += 1
+            k += 1
 
-        print(List)
-
+# driver code for MergeSort
 def main():
 
-    List = createList(10)
-    print(List)
+    numElements = 100
+    str1 = "Unsorted list is : "
+    str2 = "Sorted list is   : "
+
+    List = createList(numElements)
+    print(str1, List)
     MergeSort(List)
-    print(List)
+    print(str2, List)
 
 main()
